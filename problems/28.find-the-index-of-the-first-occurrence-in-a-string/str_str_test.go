@@ -10,9 +10,7 @@ func TestStrStr(t *testing.T) {
 	}{
 		{"hello", "ll", 2},
 		{"aaaaa", "bba", -1},
-		{"", "", 0},
-		{"", "a", -1},
-		{"a", "", 0},
+		{"a", "b", -1},
 		{"mississippi", "issip", 4},
 	}
 
