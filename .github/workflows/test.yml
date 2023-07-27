@@ -1,0 +1,35 @@
+---
+name: codecov action
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v4
+      with:
+        go-version: ^1.20
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v3
+
+    - name: Lint
+      uses: golangci/golangci-lint-action@v3
+
+    - name: Test
+      run: |
+        go clean -testcache
+        go test -race -coverprofile=coverage.out -covermode=atomic ./... -v
+
+    - name: Upload coverage to Codecov
+      run: bash <(curl -s https://codecov.io/bash)
