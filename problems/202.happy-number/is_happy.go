@@ -22,3 +22,16 @@ func next(n int) int {
 	}
 	return sum // 返回各个位上数字的平方和
 }
+
+func isHappy1(n int) bool {
+	m := make(map[int]bool)
+	for n != 1 {
+		if m[n] {
+			return false
+		}
+		m[n] = true
+		n = next(n)
+	}
+
+	return n == 1
+}

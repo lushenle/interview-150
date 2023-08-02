@@ -19,4 +19,10 @@ func TestIsHappy(t *testing.T) {
 			t.Errorf("isHappy(%v) = %v; want %v", tc.in, got, tc.want)
 		}
 	}
+
+	for _, tc := range testCases {
+		if got := isHappy1(tc.in); got != tc.want {
+			t.Errorf("isHappy(%v) = %v; want %v", tc.in, got, tc.want)
+		}
+	}
 }
